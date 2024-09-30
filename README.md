@@ -13,41 +13,38 @@ I also feel as though this much better emulates ROBLOX's DataStoreService and is
 **string AuthenticationToken**
 
 **RobloxFirebase __call(string: name, string: scope)**<br/>
-Called when requiring module from a script.
+Called when requiring module from a script.<br/>
 Example: local RobloxFirebase = require(ServerScriptService["Roblox-Firebase"])(DB_URL, DB_AUTH)
 
 **Firebase GetFirebase(string: name [, string: scope])**<br/>
-Retrieves database. Empty name defaults to full scope access of database.
-Recommended to use a DB_URL tgat us the start point of the database.
+Retrieves database. Empty name defaults to full scope access of database.<br/>
+Recommended to use a DB_URL that is the start point of the database.
 
 ### Firebase Firebase
 **Variant GetAsync(string: key)**<br/>
-Checks [Database name]/[key] for any data
+Checks [Database name]/[key] for any data<br/>
 Returns table
 
 **Variant SetAsync(string: key, Variant: value [, string: method="PUT"])**<br/>
-Initializes data at key.
+Initializes data at key.<br/>
 Returns bool
 
 **Variant DeleteAsync(string: key)**<br/>
-Permanently deletes data at key provided.
+Permanently deletes data at key provided.<br/>
 Returns bool
 
 **Variant IncrementAsync(string: key [,number: delta])**<br/>
-Increment a value in the database
+Increment a value in the database<br/>
 Example: PlayerDataFirebase:IncrementAsync(key.."/Gold", 25) -- Increment Player Gold by 25 every minute
 Returns bool
 
 **Variant Variant UpdateAsync(string: key, function callback [, Variant: snapshot=GetAsync(key)])**<br/>
-Same implementation DataStoreService
+Same implementation DataStoreService<br/>
 Redownloads data and descedents from key provided. Do not call too often, use a caching system.
 Returns bool
 
 **Variant BatchUpdateAsync(string: baseKey, Dictionary<string, Dictionary> keyValues, Dictionary<string, function> callbacks [, Variant: snapshot=GetAsync(key)])**<br/>
 Returns bool
-
-
-
 
 ## Pointers
 - Please, please, please, please write your own caching system for your data and do not call :GetAsync(), :UpdateAsync(), or :BatchUpdateAsync() too often (without a snapshot on the Update methods) as this will cause you to re-download the data and it's descendants from the key provided, this is highly inefficient and if you are using the free-tier plan for Firebase will use up your allocated 10GB/month downloads cap.
